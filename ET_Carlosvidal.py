@@ -70,3 +70,47 @@ def actualizar_precio(codigo, nuevo_precio, bodega):
 def validar_texto(dato):
     return len(dato.strip()) > 0
 
+def validar_unisex(es_unisex):
+    return es_unisex.lower() in ("s", "n")
+
+def validar_precio(precio):
+    try:
+        return int(precio) > 0 
+    except ValueError:
+        return False
+
+def validar_unidades(unidades):
+    try:
+        return int(unidades) >= 0 
+    except ValueError: 
+        return False
+
+def agregar_prenda(codigo, nombre, categoria, talla,color, material, es_unisex, precio, unidades, prendas,bodega):
+    if buscar_codigo(codigo,prendas):
+        return False
+    else:
+        prendas[codigo] = [nombre, categoria, talla, color, material, es_unisex]
+        bodega[codigo] = [precio, unidades]
+        return True
+
+def eliminar_prenda(codigo, prendas,bodega):
+    if buscar_codigo(codigo, prendas):
+        del prendas[codigo]
+        del bodega[codigo]
+        return True
+    else: 
+        return False
+
+def mostrar_menu(): 
+    print(''' ========== MENÚ PRINCIPAL ==========
+1. Unidades por categoría
+2. Búsqueda de prendas por rango de precio
+3. Actualizar precio de prenda
+4. Agregar prenda
+5. Eliminar prenda
+6. Salir
+=====================================''')
+
+def opcion_1(prendas, bodega):
+    categoria = input("Ingrese categoria a consultar:")    
+
