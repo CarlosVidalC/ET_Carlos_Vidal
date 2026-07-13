@@ -35,11 +35,38 @@ def leer_opcion():
     return opcion
 
 def unidades_categoria(categoria, prendas, bodega):
-    encontrados[]
     total = 0
     for codigo, datos in bodega.items():
         if datos[1].lower() == categoria.lower():
             total += bodega[codigo][1]
     print ("El total de ") 
 
-def busqueda_precio(categoria, prendas, bodega): 
+def busqueda_precio(precio_minimo, precio_maximo, prendas, bodega):
+    encontrados[]
+    for codigo, datos in bodega.items():
+        precio = datos [0]
+        unidades = datos [1]
+        if precio_minimo <= precio <= precio_maximo and unidades != 0:
+            nombre = prendas[codigo][0]
+            encontrados.append(f"{nombre}--{codigo}")
+    
+    encontrados.sort()
+
+    if len(encontrados) == 0:
+        print ("No hay prendas en ese rango de precio.")
+    else: 
+        print (f"Las prendas encontradas son: {encontrados}")
+
+def buscar_codigo(codigo, prendas(diccionario)):
+    return codigo in diccionario
+
+def actualizar_precio(codigo, nuevo_precio, bodega):
+    if buscar_codigo(codigo, bodega):
+        bodega[codigo][0] = nuevo_precio
+        return True
+    else:
+        return False
+
+def validar_texto(dato):
+    return len(dato.strip()) > 0
+
