@@ -103,14 +103,60 @@ def eliminar_prenda(codigo, prendas,bodega):
 
 def mostrar_menu(): 
     print(''' ========== MENÚ PRINCIPAL ==========
-1. Unidades por categoría
-2. Búsqueda de prendas por rango de precio
-3. Actualizar precio de prenda
-4. Agregar prenda
-5. Eliminar prenda
-6. Salir
-=====================================''')
+        1. Unidades por categoría
+        2. Búsqueda de prendas por rango de precio
+        3. Actualizar precio de prenda
+        4. Agregar prenda
+        5. Eliminar prenda
+        6. Salir
+        =====================================''')
 
 def opcion_1(prendas, bodega):
     categoria = input("Ingrese categoria a consultar:")    
+    unidades_categoria(categoria,prendas,bodega)
+
+def opcion_2(prendas,bodega):
+    precio_minimo = 0 
+    precio_maximo = 0
+    datos_validos = False
+    while not datos_validos:
+        try:
+            precio_minimo = int("Ingrese precio mínimo: ")
+            precio_maximo = int("Ingrese precio máximo: ")
+            if precio_minimo <= 0 and precio_maximo >= precio_minimo:
+                return True
+            else: 
+                print ("Debe ingresar valores enteros.")
+        except ValueError: 
+            print ("Debe ingresar valores enteros.")
+    busqueda_precio(precio_minimo, precio_maximo, prendas, bodega)
+
+def opcion_3(bodega):
+    continuar = True
+    while continuar:
+        codigo = input("Ingrese el codigo de la prenda: ").strip().lower()
+        precio_valido = True
+        nuevo_precio = 0
+        while not precio_valido:
+            try: 
+                nuevo_precio = int(input("Ingrese el nuevo precio de la prenda: "))
+                if nuevo_precio > 0: 
+                    precio_valido = True
+                else: 
+                    print("El precio debe ser un entero mayor que cero.")
+            except ValueError: 
+                print ("El precio debe ser un entero mayor que cero.")
+
+        if actualizar_precio(codigo, nuevo_precio,bodega):
+            print ("Precio actualizado")
+        else: 
+            print ("El código no existe.")
+
+        respuesta = input ("Desea actualizar otro precio (s/n): ")
+        if respuesta == "s":
+            continue 
+        else: 
+            break
+                    
+def opcion_4:
 
