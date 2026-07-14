@@ -1,3 +1,6 @@
+from os import system
+system("cls")
+
 prendas = {
 'S001': ['Polera Basica', 'polera', 'M', 'negro', 'algodon',
 True],
@@ -36,26 +39,19 @@ def leer_opcion():
 
 def unidades_categoria(categoria, prendas, bodega):
     total = 0
-    for codigo, datos in bodega.items():
+    for codigo, datos in prendas.items():
         if datos[1].lower() == categoria.lower():
             total += bodega[codigo][1]
-    print ("El total de ") 
+    print (f"El total de unidades disponibles es {total} ") 
 
 def busqueda_precio(precio_minimo, precio_maximo, prendas, bodega):
-    encontrados[]
     for codigo, datos in bodega.items():
         precio = datos [0]
         unidades = datos [1]
         if precio_minimo <= precio <= precio_maximo and unidades != 0:
             nombre = prendas[codigo][0]
-            encontrados.append(f"{nombre}--{codigo}")
+            
     
-    encontrados.sort()
-
-    if len(encontrados) == 0:
-        print ("No hay prendas en ese rango de precio.")
-    else: 
-        print (f"Las prendas encontradas son: {encontrados}")
 
 def buscar_codigo(codigo, prendas):
     return codigo in prendas
@@ -118,18 +114,18 @@ def opcion_1(prendas, bodega):
 def opcion_2(prendas,bodega):
     precio_minimo = 0 
     precio_maximo = 0
-    datos_validos = False
-    while not datos_validos:
+    while True:
         try:
-            precio_minimo = int("Ingrese precio mínimo: ")
-            precio_maximo = int("Ingrese precio máximo: ")
+            precio_minimo = int(input("Ingrese precio mínimo: "))
+            precio_maximo = int(input("Ingrese precio máximo: "))
             if precio_minimo <= 0 and precio_maximo >= precio_minimo:
                 return True
             else: 
                 print ("Debe ingresar valores enteros.")
         except ValueError: 
-            print ("Debe ingresar valores enteros.")
-    busqueda_precio(precio_minimo, precio_maximo, prendas, bodega)
+            print ("Bucle.")
+            
+        busqueda_precio(precio_minimo, precio_maximo, prendas, bodega)
 
 def opcion_3(bodega):
     continuar = True
@@ -152,7 +148,7 @@ def opcion_3(bodega):
         else: 
             print ("El código no existe.")
 
-        respuesta = input ("Desea actualizar otro precio (s/n): ")
+        respuesta = input ("Desea actualizar otro precio (s/n): ").lower()
         if respuesta != "s":
             continuar = False
 
@@ -210,4 +206,46 @@ def opcion_5(codigo, bodega):
     else: 
         print ("El codigo no existe.")
 
+def main():
 
+    prendas = {
+    'S001': ['Polera Basica', 'polera', 'M', 'negro', 'algodon',
+    True],
+    'S002': ['Jeans Slim', 'pantalon', 'L', 'azul', 'denim', False],
+    'S003': ['Chaqueta Urban', 'chaqueta', 'M', 'gris', 'poliester',
+    True],
+    'S004': ['Vestido Sol', 'vestido', 'S', 'rojo', 'lino', False],
+    'S005': ['Poleron Cozy', 'poleron', 'XL', 'verde', 'algodon',
+    True],
+    'S006': ['Camisa Formal', 'camisa', 'M', 'blanco', 'algodon',
+    False],
+    }
+
+    bodega = {
+    'S001': [7990, 12],
+    'S002': [19990, 0],
+    'S003': [29990, 3],
+    'S004': [24990, 6],
+    'S005': [17990, 8],
+    'S006': [14990, 2],
+    }
+
+    while True:
+        mostrar_menu()
+        opcion = leer_opcion()
+
+        if opcion == 1:
+            opcion_1(prendas,bodega)
+        elif opcion == 2:
+            opcion_2(prendas,bodega)
+        elif opcion == 3:
+            opcion_3(bodega)
+        elif opcion == 4:
+            opcion_4(prendas,bodega)
+        elif opcion == 5:
+            opcion_5(prendas,bodega)
+        elif opcion == 6: 
+            print ("Programa Finalizado.")
+        break
+
+main()
