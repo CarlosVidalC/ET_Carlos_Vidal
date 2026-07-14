@@ -57,8 +57,8 @@ def busqueda_precio(precio_minimo, precio_maximo, prendas, bodega):
     else: 
         print (f"Las prendas encontradas son: {encontrados}")
 
-def buscar_codigo(codigo, prendas(diccionario)):
-    return codigo in diccionario
+def buscar_codigo(codigo, prendas):
+    return codigo in prendas
 
 def actualizar_precio(codigo, nuevo_precio, bodega):
     if buscar_codigo(codigo, bodega):
@@ -153,10 +153,61 @@ def opcion_3(bodega):
             print ("El código no existe.")
 
         respuesta = input ("Desea actualizar otro precio (s/n): ")
-        if respuesta == "s":
-            continue 
-        else: 
-            break
-                    
-def opcion_4:
+        if respuesta != "s":
+            continuar = False
+
+def opcion_4(codigo, prendas, bodega): 
+    codigo = input("Ingrese el codigo de prenda: ").strip().lower()
+    if buscar_codigo(prendas,bodega):
+        print ("El codigo ya existe.")
+        return
+    if not validar_texto(codigo):
+        print ("El código ya existe.")
+        return
+    nombre = input ("Ingrese nombre de la prenda: ")
+    if not validar_texto(nombre): 
+        print ("El nombre no puede estar vacio.")
+        return
+    categoria = input ("Ingrese la categoria del producto: ")
+    if not validar_texto(categoria):
+        print("La categoria no puede estar vacia.")
+        return
+    talla = input("Ingrese la talla del producto: ")
+    if not validar_texto(talla):
+        print("La talla no debe estar vacia.")    
+        return
+    color = input ("Ingrese el color de la prenda: ")
+    if not validar_texto(color):
+        print("El color no debe estar vacio.")
+        return
+    material = input ("Ingrese el material del producto:")
+    if not validar_texto(material):
+        print("El material no debe estar vacio.")
+        return
+    es_unisex = input ("La prenda es unisex? (s/n)").lower()
+    if not validar_unisex(es_unisex):
+        print("Debe escribir 's' o 'n'")
+        return
+    
+    precio = int(input("Ingrese el precio de la prenda: "))
+    if not validar_precio(precio):
+        print ("Debe escribir un número entero mayor que cero.")
+        return
+    unidades = int(input("Ingrese la cantidad de unidades: "))
+    if not validar_unidades(unidades): 
+        print ("Debe ingresar un número entero mayor o igual a cero.")
+        return
+
+    if agregar_prenda(codigo, nombre, categoria, talla,color, material, es_unisex, precio, unidades, prendas,bodega):
+        print ("Prenda agregada.")
+    else: 
+        print ("El codigo ya existe.")    
+
+def opcion_5(codigo, bodega): 
+    codigo = input("Ingrese el codigo de la prenda que desea eliminar: ")
+    if eliminar_prenda(codigo):
+        print ("Prenda eliminada.")
+    else: 
+        print ("El codigo no existe.")
+
 
