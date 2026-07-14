@@ -128,8 +128,7 @@ def opcion_2(prendas,bodega):
         busqueda_precio(precio_minimo, precio_maximo, prendas, bodega)
 
 def opcion_3(bodega):
-    continuar = True
-    while continuar:
+    while True:
         codigo = input("Ingrese el codigo de la prenda: ").strip().lower()
         precio_valido = True
         nuevo_precio = 0
@@ -150,7 +149,7 @@ def opcion_3(bodega):
 
         respuesta = input ("Desea actualizar otro precio (s/n): ").lower()
         if respuesta != "s":
-            continuar = False
+            break
 
 def opcion_4(codigo, prendas, bodega): 
     codigo = input("Ingrese el codigo de prenda: ").strip().lower()
@@ -199,9 +198,9 @@ def opcion_4(codigo, prendas, bodega):
     else: 
         print ("El codigo ya existe.")    
 
-def opcion_5(codigo, bodega): 
-    codigo = input("Ingrese el codigo de la prenda que desea eliminar: ")
-    if eliminar_prenda(codigo):
+def opcion_5(prendas,bodega): 
+    codigo = input("Ingrese el codigo de la prenda que desea eliminar: ").strip().lower()
+    if eliminar_prenda(codigo,prendas,bodega):
         print ("Prenda eliminada.")
     else: 
         print ("El codigo no existe.")
